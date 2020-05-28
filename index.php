@@ -21,12 +21,17 @@ if(!isset($_REQUEST['c']))
     require_once "controller/$controller.php";
     $controller = new $controller;
 } else {
+    
     // Obtenemos el controlador que queremos cargar
-    $controller = strtolower($_GET['c']);
-    $action = isset($_GET['a']) ? $_GET['a'] : 'index';
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        $controller = ucwords($_GET['c']);
+        $action = isset($_GET['a']) ? $_GET['a'] : 'index';
+    } else {
+        $controller = ucwords($_REQUEST['c']);
+        $action = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'index';
+    }
     
     // Instanciamos el controlador
-    $controller = ucwords($controller);
     require_once "controller/$controller.php";
     $controller = new $controller;
     
