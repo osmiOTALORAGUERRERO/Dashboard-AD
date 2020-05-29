@@ -11,24 +11,42 @@ class ProductionReport
 
     public function index(Type $var = null)
     {
-        require_once 'views/assets/header.php';
-        require_once 'views/production/production_report.php';
-        require_once 'views/assets/footer.php';
+        if (isset($_SESSION['user'])) {
+            require_once 'views/assets/header.php';
+            require_once 'views/production/production_report.php';
+            require_once 'views/assets/footer.php';
+        } else {
+            header('location: .');
+        }
     }
 
-    public function plotUnitsSoldsAndWarehousing(Type $var = null)
+    public function plotUnitsSoldsAndWarehousing()
     {
-        
-        echo json_encode();
+        if (isset($_SESSION['user'])) {
+            
+            echo json_encode();
+        } else {
+            header('location: .');
+        }
     }
 
-    public function plotCostsAndIncome(Type $var = null)
+    public function plotCostsAndIncome()
     {
-        echo json_encode();
+        if (isset($_SESSION['user'])) {
+            
+            echo json_encode();
+        } else {
+            header('location: .');
+        }
     }
 
-    public function plotProdcutsSold(Type $var = null)
+    public function plotProdcutsSold()
     {
-        echo json_encode();
+        if (isset($_SESSION['user'])) {
+            
+            echo json_encode();
+        } else {
+            header('location: .');
+        }
     }
 }

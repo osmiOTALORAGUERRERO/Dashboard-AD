@@ -23,12 +23,13 @@ class SalesReport
     public function plotSalesPerCustomer()
     {
         if (isset($_SESSION['user'])) {
-            // $date = $_POST['date'];
-            // $data = $this->saleData->salesPerCustomer($date->year, $date->month, $date->week, $date->day);
-            // echo json_encode($data);
+            $date = json_decode($_POST['date']);
 
-            $example = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
-            echo json_encode($example);
+            $data = $this->saleData->salesPerCustomer($date->year, $date->month, $date->week, $date->day);
+            echo json_encode($data);
+
+            // $example = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+            // echo json_encode($example);
             
             return;
         }else{
@@ -39,13 +40,13 @@ class SalesReport
     public function plotSalesPerDate() 
     {
         if (isset($_SESSION['user'])) {
-            // $date = $_POST['date'];
-            // $data1 = $this->saleData->salesRevenuePerDate($date->year, $date->month, $date->week, $date->day);
-            // $data2 = $this->saleData->sellingExpensesPerDate($date->year, $date->month, $date->week, $date->day);
-            // echo json_encode(array("salesRevenue"=>$data1, "sellingExpenses"=>$data2));
+            $date = json_decode($_POST['date']);
+            $data1 = $this->saleData->salesRevenuePerDate($date->year, $date->month, $date->week, $date->day);
+            $data2 = $this->saleData->sellingExpensesPerDate($date->year, $date->month, $date->week, $date->day);
+            echo json_encode(array("salesRevenue"=>$data1, "sellingExpenses"=>$data2));
 
-            $example = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
-            echo json_encode($example);
+            // $example = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+            // echo json_encode($example);
             return;
         }else{
             header('location: .');
@@ -55,12 +56,27 @@ class SalesReport
     public function plotSalesProducts() 
     {
         if (isset($_SESSION['user'])) {
-            // $date = $_POST['date'];
-            // $data = $this->saleData->totalProductosSold($date->year, $date->month, $date->week, $date->day);
-            // echo json_encode($data);
+            $date = json_decode($_POST['date']);
+            $data = $this->saleData->totalProductsSold($date->year, $date->month, $date->week, $date->day);
+            echo json_encode($data);
             
-            $example = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
-            echo json_encode($example);
+            // $example = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+            // echo json_encode($example);
+            return;
+        }else{
+            header('location: .');
+        }
+    }
+
+    public function totalsSales(Type $var = null)
+    {
+        if (isset($_SESSION['user'])) {
+            $date = json_decode($_POST['date']);
+            $data = $this->saleData->totalSales($date->year, $date->month, $date->week, $date->day);
+            echo json_encode($data);
+            
+            // $example = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+            // echo json_encode($example);
             return;
         }else{
             header('location: .');
