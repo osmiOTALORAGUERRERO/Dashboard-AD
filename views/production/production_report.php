@@ -6,6 +6,8 @@
 
 <?php require_once 'views/assets/date_form.php'?>
 
+<h1 class="text-center display-1">En desarrollo :)</h1>
+
 <canvas id="" width="400" height="400"></canvas>
 <canvas id="" width="400" height="400"></canvas>
 <canvas id="" width="400" height="400"></canvas>
